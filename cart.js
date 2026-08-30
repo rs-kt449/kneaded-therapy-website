@@ -1,13 +1,16 @@
 // Relies on KT_CART_KEY and ktGetCart() from script.js (loaded first on every page).
 
+// NOTE: prices below are placeholders — update them to your real per-piece
+// pricing whenever you have it. They're used on the menu page, the cart
+// page, and the order summary sent to your inbox/sheet.
 var KT_ITEM_META = {
-  'Classic Brown Butter Chocolate Chip': { display: 'Classic Brown Butter Chocolate Chip', category: 'Cookie' },
-  'Biscoff Stuffed Cookie': { display: 'Biscoff Stuffed Cookie', category: 'Cookie' },
-  'Birthday Cake Cookie': { display: 'Birthday Cake Cookie', category: 'Cookie' },
-  'The Chaos Cookie': { display: '"The Chaos Cookie"', category: 'Cookie · loaded' },
-  'Fudge Brownie - The Dense One': { display: 'Fudge Brownie — "The Dense One"', category: 'Brownie' },
-  'Salted Caramel Brownie': { display: 'Salted Caramel Brownie', category: 'Brownie' },
-  'Browned Butter Blondie': { display: 'Browned Butter Blondie', category: 'Blondie' }
+  'Classic Brown Butter Chocolate Chip': { display: 'Classic Brown Butter Chocolate Chip', category: 'Cookie', price: 89 },
+  'Biscoff Stuffed Cookie': { display: 'Biscoff Stuffed Cookie', category: 'Cookie', price: 119 },
+  'Birthday Cake Cookie': { display: 'Birthday Cake Cookie', category: 'Cookie', price: 89 },
+  'The Chaos Cookie': { display: '"The Chaos Cookie"', category: 'Cookie · loaded', price: 149 },
+  'Fudge Brownie - The Dense One': { display: 'Fudge Brownie — "The Dense One"', category: 'Brownie', price: 129 },
+  'Salted Caramel Brownie': { display: 'Salted Caramel Brownie', category: 'Brownie', price: 139 },
+  'Browned Butter Blondie': { display: 'Browned Butter Blondie', category: 'Blondie', price: 119 }
 };
 
 function ktSaveCart(cart) {
@@ -104,24 +107,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cartContainer.innerHTML = '';
     var lines = [];
+    var grandTotal = 0;
 
     names.forEach(function (name) {
       var qty = cart[name];
-      var meta = KT_ITEM_META[name] || { display: name, category: '' };
-      lines.push(meta.display.replace(/"/g, '') + ' x' + qty);
+      var meta = KT_ITEM_META[name] || { display: name, category: '', price: 0 };
+      var lineTotal = (meta.price || 0) * qty;
+      grandTotal += lineTotal;
+      lines.push(meta.display.replace(/"/g, '') + ' x' + qty + ' (₹' + lineTotal + ')');
 
       var row = document.createElement('div');
       row.className = 'order-item-row';
       row.innerHTML =
         '<div class="order-item-info">' +
           '<h4>' + meta.display + '</h4>' +
-          '<p>' + meta.category + '</p>' +
+          '<p>' + meta.category + ' · ₹' + meta.price + ' each</p>' +
         '</div>' +
         '<div class="qty-stepper">' +
           '<button type="button" class="qty-minus" aria-label="Decrease quantity">−</button>' +
           '<span class="qty-value">' + qty + '</span>' +
           '<button type="button" class="qty-plus" aria-label="Increase quantity">+</button>' +
-        '</div>';
+        '</div>' +
+        '<div class="cart-line-total">₹' + lineTotal + '</div>';
 
       row.querySelector('.qty-minus').addEventListener('click', function () {
         ktSetQty(name, qty - 1);
@@ -135,7 +142,12 @@ document.addEventListener('DOMContentLoaded', function () {
       cartContainer.appendChild(row);
     });
 
-    if (summaryField) summaryField.value = lines.join(', ');
+    var totalRow = document.createElement('div');
+    totalRow.className = 'cart-total-row';
+    totalRow.innerHTML = '<span>Total</span><span>₹' + grandTotal + '</span>';
+    cartContainer.appendChild(totalRow);
+
+    if (summaryField) summaryField.value = lines.join(', ') + ' — Total: ₹' + grandTotal;
   }
 
   renderCart();
