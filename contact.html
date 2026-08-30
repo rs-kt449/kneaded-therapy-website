@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Kneaded Therapy</title>
+<meta name="description" content="Get in touch with Kneaded Therapy to order, ask a question, or get on the Storybook Drops list.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo.png" alt="Kneaded Therapy logo">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="drops.html">Storybook Drops</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="order.html" class="nav-order">Order Now</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="container">
+      <h1>Let's Talk</h1>
+      <p class="tagline">Order a batch, ask a question, or just say hi.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="contact-card">
+        <form action="mailto:hello@kneadedtherapy.com" method="post" enctype="text/plain">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-field">
+            <label for="reason">What's this about?</label>
+            <select id="reason" name="reason">
+              <option>Placing an order</option>
+              <option>Storybook Drops waitlist</option>
+              <option>Wholesale / events</option>
+              <option>Just saying hi</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell us what's on your mind..."></textarea>
+          </div>
+          <div style="text-align:center;">
+            <button type="submit" class="btn btn-primary">Send It</button>
+          </div>
+        </form>
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <p>Prefer email directly? Reach us at <a href="mailto:hello@kneadedtherapy.com" style="color:var(--cherry); font-weight:700;">hello@kneadedtherapy.com</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="foot-logo">Kneaded Therapy</div>
+  <p>Because everyone needs a little kneaded therapy.</p>
+  <div class="social-row">
+    <a href="#" aria-label="Instagram">📷</a>
+    <a href="#" aria-label="TikTok">🎵</a>
+    <a href="mailto:hello@kneadedtherapy.com" aria-label="Email">✉️</a>
+  </div>
+  <p class="foot-fine">&copy; 2026 Kneaded Therapy. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
