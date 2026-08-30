@@ -133,9 +133,26 @@ p { margin: 0 0 1em; }
 .nav-order {
   background: var(--cherry);
   color: var(--white) !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .nav-order:hover { background: var(--cherry-dark) !important; }
+
+.cart-count {
+  background: var(--white);
+  color: var(--cherry);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 1px 7px;
+  line-height: 1.5;
+  display: none;
+}
+
+.cart-count.show { display: inline-block; }
 
 .nav-toggle {
   display: none;
@@ -401,6 +418,26 @@ section { padding: 70px 0; }
 .card-photo .card-body h3 { margin-bottom: 0.35em; }
 
 .card-photo .card-body p { margin-bottom: 0; font-size: 0.96rem; opacity: 0.9; }
+
+.menu-add-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--tan);
+}
+
+.btn-sm {
+  padding: 9px 20px;
+  font-size: 0.88rem;
+}
+
+.btn-sm.added {
+  background: var(--caramel);
+  box-shadow: 0 6px 0 var(--brown);
+}
 
 /* ---------- Reviews ---------- */
 
